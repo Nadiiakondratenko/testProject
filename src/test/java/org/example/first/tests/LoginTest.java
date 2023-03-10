@@ -6,6 +6,7 @@ import org.example.first.demo.LoginGoogle;
 import org.example.first.pages.GoogleMainPage;
 import org.example.first.pages.GoogleSearchResult;
 import org.example.first.pages.MainShopPage;
+import org.example.first.pages.SearchResultPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -47,6 +48,26 @@ public class LoginTest extends LoginGoogle {
         boolean actualResult = shopPage.findLogo();
         Assert.assertEquals(actualResult,expectedResult);
     }
+    @Test
+    public void searchOnShop () {
+        boolean expectedResult = true;
+        MainShopPage shopPage = new MainShopPage();
+        String searchValue = "Gerber";
+        shopPage.enterSearchValue(searchValue);
+        shopPage.clickSearchButton();
+        SearchResultPage resultPage = new SearchResultPage();
+      //  String actualResult3 = resultPage.result();
+      //  System.out.println(actualResult3);
+        //resultPage.clickOnElement();
+        boolean actualResult = resultPage.containsWord();
+        Assert.assertEquals(actualResult,expectedResult);
+
+
+
+
+
+    }
+
 
     @AfterClass
     public void closeBrowser (){
